@@ -24,3 +24,4 @@ pnpm-debug.log*
 
 # Database data
 infrastructure/dbdata
+__pycache__
