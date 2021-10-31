@@ -18,9 +18,13 @@ services:
       dockerfile: infrastructure/frontend/Dockerfile
       context: .
     ports:
-      - "8080:80"
+      - "8080:8080"
+    # Run server:
+    command: >
+      sh -c "npm run serve -- --port 8080"
+    working_dir: /vue-src/
     volumes:
-      - ./vue-src/dist:/usr/share/nginx/html
+      - ./vue-src:/vue-src
 
   # Backend (public service at port 8081):
   web_service:
