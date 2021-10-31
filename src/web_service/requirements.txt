@@ -1,0 +1,7 @@
+fastapi==0.70.0
+uvicorn[standard]==0.15.0
+SQLAlchemy==1.4.25
+classutilities==0.2.0
+psycopg2==2.9.1
+fastapi-utils==0.2.1
+pydantic-sqlalchemy==0.0.9

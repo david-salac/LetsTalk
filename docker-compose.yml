@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  # Database (PostgreSQL):
+  database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: letstalk
+      POSTGRES_DB: letstalk
+      POSTGRES_PASSWORD: KdfjiED8
+    volumes:
+      - ./infrastructure/dbdata:/var/lib/postresql/data
+
+  # Frontend (public service at port 8080):
+  frontend:
+    build:
+      dockerfile: infrastructure/frontend/Dockerfile
+      context: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src/frontend:/usr/share/nginx/html
+
+  # Backend (public service at port 8081):
+  web_service:
+    build:
+      dockerfile: infrastructure/web_service/Dockerfile
+      context: .
+    # Run server:
+    command: >
+      sh -c "uvicorn letstalk.main:service --reload --port 8081 --host 0.0.0.0"
+    working_dir: /src/
+    volumes:
+      - ./src/web_service:/src/
+    ports:
+      - "8081:8081"
+    depends_on:
+      - database
