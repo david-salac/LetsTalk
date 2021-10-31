@@ -20,7 +20,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./src/frontend:/usr/share/nginx/html
+      - ./vue-src/dist:/usr/share/nginx/html
 
   # Backend (public service at port 8081):
   web_service:
