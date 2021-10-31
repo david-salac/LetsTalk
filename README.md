@@ -23,3 +23,8 @@ Back-end end-point is available on address:
 ```
 http://localhost:8081/
 ```
+## Design
+The whole application is a simple full-stack system
+around the following data model.
+
+![LetsTalk ERA model](docs/era_model.png)
